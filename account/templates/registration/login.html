@@ -15,10 +15,10 @@
                     <p>Please, use the following form to log-in:</p>
                 {% endif %}
                 <form action="{% url 'login' %}" method="post">
-                  {{ form|crispy }}
-                  {% csrf_token %}
-                  <input type="hidden" name="next" value="{{ next }}" />
-                  <input class="btn btn-primary mt-2" type="submit" value="Log-in">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <input type="hidden" name="next" value="{{ next }}" />
+                    <input class="btn btn-primary mt-2" type="submit" value="Log-in">
                 </form>
              </div>
          </div>
