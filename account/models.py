@@ -1,6 +1,6 @@
 from django.db import models
 from django.conf import settings
-from .services import get_path_upload_avatar
+from base.services import get_path_upload_avatar
 
 
 class Profile(models.Model):
