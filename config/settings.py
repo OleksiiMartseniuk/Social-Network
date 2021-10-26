@@ -14,7 +14,7 @@ SECRET_KEY = 'django-insecure-t22ic1s!=(g4m84fcj5&c5%-0wirlri$c-=r6ubvz!^ej27go&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0459-176-100-4-93.ngrok.io']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'b7c5-176-100-4-93.ngrok.io']
 
 
 # Application definition
@@ -30,8 +30,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'images',
+
     'social_django',
     'crispy_forms',
+    'sorl.thumbnail',
 ]
 
 MIDDLEWARE = [

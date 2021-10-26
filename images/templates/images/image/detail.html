@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load thumbnail %}
+
 {% block title %}{{ image.title }}{% endblock %}
 
 {% block content %}
@@ -8,7 +10,11 @@
             <h1>{{ image.title }}</h1>
             <hr>
              <div class="col-6">
-                 <img src="{{ image.image.url }}" class="img-fluid rounded">
+                 {% thumbnail image.image "300" as im %}
+                    <a href="{{ image.image.url }}">
+                        <img src="{{ im.url }}" class="img-fluid rounded">
+                    </a>
+                 {% endthumbnail %}
              </div>
              <div class="col-6">
                  {% with total_likes=image.user_like.count %}
