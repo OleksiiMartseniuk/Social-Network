@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ image.title }}{% endblock %}
+
+{% block content %}
+<div class="container mt-2">
+         <div class="row">
+            <h1>{{ image.title }}</h1>
+            <hr>
+             <div class="col-6">
+                 <img src="{{ image.image.url }}" class="img-fluid rounded">
+             </div>
+             <div class="col-6">
+                 {% with total_likes=image.user_like.count %}
+                    <h3>
+                        <span class="badge bg-primary rounded-pill">{{ total_likes }} like{{ total_likes|pluralize }}</span>
+                    </h3>
+                    <p>{{ image.description|linebreaks }}</p>
+
+
+                    <div class="image-likes">
+                        {% for user in image.user_like.all %}
+                            <div>
+                                <img src="{{ user.profile.avatar.url }}" class="img-fluid rounded" style="width:50px;">
+                                <p>{{ user.first_name }}</p>
+                            </div>
+                        {% empty %}
+                            Nobody likes this image yet.
+                        {% endfor %}
+                    </div>
+                {% endwith %}
+             </div>
+
+
+
+
+
+         </div>
+</div>
+{% endblock %}
