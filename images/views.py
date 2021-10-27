@@ -1,3 +1,4 @@
+import json
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -48,8 +49,13 @@ def image_detail(request, id, slug):
 @require_POST
 def image_like(request):
     """like """
-    image_id = request.POST.get('id')
-    action = request.POST.get('action')
+    data = json.loads(request.body.decode("utf-8"))
+    image_id = data['id']
+    action = data['action']
+    
+    print(data)
+    print(image_id)
+    print(action)
     if image_id and action:
         try:
             image = Image.objects.get(id=image_id)
@@ -59,5 +65,5 @@ def image_like(request):
                 image.user_like.remove(request.user)
             return JsonResponse({'status': 'ok'})
         except:
-            pass
-    return JsonResponse({'status': 'ok'})
+            return JsonResponse({'status': 'error'})
+    return JsonResponse({'status': 'not'})
