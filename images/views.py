@@ -55,10 +55,7 @@ def image_like(request):
     data = json.loads(request.body.decode("utf-8"))
     image_id = data['id']
     action = data['action']
-    
-    print(data)
-    print(image_id)
-    print(action)
+
     if image_id and action:
         try:
             image = Image.objects.get(id=image_id)
@@ -78,7 +75,6 @@ def image_list(request):
     images = Image.objects.all()
     paginator = Paginator(images, 8)
     page = request.GET.get('page')
-    print(page)
     try:
         images = paginator.page(page)
     except PageNotAnInteger:
