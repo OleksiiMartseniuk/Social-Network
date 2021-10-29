@@ -32,7 +32,7 @@ async function postData(url = '', data = {}) {
 
 
 
-
+//like
 const icon = document.getElementById('icon')
 const like = document.getElementById('like') 
 const total_likes = document.getElementById('total') 
@@ -55,6 +55,7 @@ like.onclick = () => {
         }
     });
 
-  console.dir(icon.style['color'] = 'red')
-   
+  console.dir(icon.style['color'] = 'red')  
 }
+
+
