@@ -24,4 +24,8 @@ urlpatterns = [
 
     # Редактирования Profile
     path('edit/', views.edit, name='edit'),
+
+    # Пользователи
+    path('users/', views.user_list, name='user_list'),
+    path('user/<username>/', views.user_detail, name='user_detail'),
 ]

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% load thumbnail %}
+
+{% block title %}{{ user.get_full_name }}{% endblock %}
+
+{% block content %}
+ <div class="container mt-2">
+    <h1>{{ user.get_full_name }}</h1>
+    <hr>
+
+         <div class="row">
+            <div class="col-3">
+                <div class="profile-info">
+                    {%thumbnail user.profile.avatar "150x150" crop="100%" as im%}
+                        <img src="{{ im.url }}" class="rounded mx-auto d-block">
+                    {% endthumbnail %}
+                </div>
+            </div>
+             <div class="col-9">
+                {% with total_followers=user.followers.count %}
+                <span class="count btn btn-outline-primary m-3 " style="background:blue;color:white;">
+                    <span class="total">{{ total_followers }}</span>
+                        follower{{ total_followers|pluralize }}
+                </span>
+                <span  data-id="{{ user.id }}"
+                data-action="{% if request.user in user.followers.all %}un{% endif %}follow"
+                class="follow button btn btn-outline-danger float-right m-3"
+                style="{% if request.user in user.followers.all %}background:red;color:white;{% endif %}float: right;"
+                align="right">
+                {% if request.user not in user.followers.all %}
+                Follow
+                {% else %}
+                Unfollow
+                {% endif %}
+                </span>
+
+                <div id="image-list" class="row row-cols-1 row-cols-md-4 g-4 m-2">
+                    {% include "images/image/list_ajax.html" with images=user.images_created.all %}
+                </div>
+                {% endwith %}
+            </div>
+         </div>
+
+ </div>
+
+
+{% endblock %}
