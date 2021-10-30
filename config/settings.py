@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'images',
+    'actions',
 
     'social_django',
     'crispy_forms',
