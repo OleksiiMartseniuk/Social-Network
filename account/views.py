@@ -9,11 +9,24 @@ from django.contrib.auth.models import User
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from actions.utils import create_action
+from actions.models import Action
 
 
 @login_required
 def dashboard(request):
-    return render(request, 'account/dashboard.html', {'section': 'dashboard'})
+    # По умолчанию отображаем все действия.
+    actions = Action.objects.exclude(user=request.user)
+    following_ids = request.user.following.values_list('id', flat=True)
+    if following_ids:
+        # Если текущий пользователь подписался на кого-то,
+        # отображаем только действия этих пользователей.
+        actions = actions.filter(user_id__in=following_ids)
+    actions = actions[:10]
+    context = {
+        'section': 'dashboard',
+        'actions': actions
+    }
+    return render(request, 'account/dashboard.html', context)
 
 
 def register(request):
