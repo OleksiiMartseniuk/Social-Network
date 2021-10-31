@@ -1,0 +1,56 @@
+{% load thumbnail %}
+
+{% with user=action.user profile=action.user.profile %}
+    <div class="action p-2">
+        <div class="row">
+             <div class="col-3" style="padding-left: 5%;">
+                 <div class="images">
+                    {% if profile.avatar %}
+                        {% thumbnail user.profile.avatar "80x80" crop="100%" as im %}
+                            <a href="{{ user.get_absolute_url }}" class="m-2">
+                                <img src="{{ im.url }}" alt="{{ user.get_full_name }}" class="item-img">
+                            </a>
+                        {% endthumbnail %}
+                    {% endif %}
+
+                    {% if action.target %}
+                        {% with target=action.target %}
+                            {% if target.image %}
+                                {% thumbnail target.image "80x80" crop="100%" as im %}
+                                    <a href="{{ target.get_absolute_url }}">
+                                        <img src="{{ im.url }}" class="item-img">
+                                    </a>
+                                {% endthumbnail %}
+                            {% endif %}
+                            {% if target.profile %}
+                                {% thumbnail target.profile.avatar "80x80" crop="100%" as im %}
+                                    <a href="{{ target.get_absolute_url }}">
+                                        <img src="{{ im.url }}" class="item-img">
+                                    </a>
+                                {% endthumbnail %}
+                            {% endif %}
+                        {% endwith %}
+                    {% endif %}
+                 </div>
+             </div>
+            <div class="col-9">
+                <div class="info">
+                    <p>
+                        <span class="date text-muted">{{ action.created|timesince }} ago</span><br />
+                        <a href="{{ user.get_absolute_url }}">{{ user.first_name }}</a>
+                        {{ action.verb }}
+                        {% if action.target %}
+                            {% with target=action.target %}
+                                <a href="{{ target.get_absolute_url }}">{{ target }}</a>
+                            {% endwith %}
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+{% endwith %}
+
+
