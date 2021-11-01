@@ -5,7 +5,16 @@
 {% block title %}Images bookmarked{% endblock %}
 
 {% block content %}
-    <h1>Images bookmarked</h1>
+
+    <div class="row">
+        <div class="col-md-9">
+            <h1>Images bookmarked</h1>
+        </div>
+        <div class="col-md-3 p-4">
+            <a  href="{% url 'ranking'%}">Ranking picture </a>
+        </div>
+    </div>
+
     <hr>
         <div id='image-list' class="row row-cols-1 row-cols-md-4 g-4">
             {% include "images/image/list_ajax.html" %}
