@@ -5,7 +5,7 @@
         <div class="card  m-3" >
             <a href="{{ image.get_absolute_url }}">
                 {% thumbnail image.image "300x300" crop="100%" as im %}
-                    <img src="{{ im.url }}" class="card-img-top mx-auto" alt="...">
+                    <img src="{{ im.url }}" class="card-img-top mx-auto rounded" alt="...">
                 {% endthumbnail %}
             </a>
             <div class="card-body">
