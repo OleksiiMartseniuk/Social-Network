@@ -75,7 +75,8 @@ def image_like(request):
 @login_required
 def image_list(request):
     """Динамический список изображений"""
-    images = Image.objects.all()
+    # Сортировка картинок по покулярности
+    images = Image.objects.order_by('-total_likes')
     paginator = Paginator(images, 8)
     page = request.GET.get('page')
     try:
