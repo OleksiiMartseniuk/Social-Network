@@ -56,7 +56,7 @@ Make sure to have python version 3 install on you pc or laptop.
 <br>
 **Clone repository**
 <br>
-`https://github.com/OleksiiMartseniuk/Blog.git`
+`https://github.com/OleksiiMartseniuk/Social-Network.git`
 
 2. ## Installing dependencies
 
